@@ -429,7 +429,10 @@ input[type="color"]::-webkit-color-swatch {
   padding: 16px 0;
   margin: auto;
 }
-
+.down-text a{
+  color: inherit;
+  text-decoration: none;
+}
 .copy-rights i,
 .contributers i {
   font-weight: bold;
@@ -479,8 +482,9 @@ footer {
   justify-content: center;
   width: 218px;
   height: 36px;
-  left: calc(50% - 218px/2 + 571px);
-  bottom: 40px;
+  /* left: calc(50% - 218px/2 + 571px); */
+  right: 40px;
+  bottom: 80px;
   background: #000000;
   border-radius: 240px;
   font-family: 'Inter';
