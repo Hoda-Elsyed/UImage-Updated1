@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <title>UImage</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="images/logo.svg" alt="" />
+        <div class="sign-in">
+          <button class="login" id="login">Login</button>
+          <button class="sign-up blue-btn" id="sign-up">Sign up</button>
+        </div>
+      </header>
+      <div class="advertising top">Reserved for ADs</div>
+      <div class="wrapper">
+        <div class="left hidden">
+          <div class="advertising left-part">Reserved for ADs</div>
+          <div class="advertising left-part">Reserved for ADs</div>
+        </div>
+        <div class="vertical">
+          <div class="main">
+            <p class="photographer">
+              <em>Image by</em>
+              <a href="https://unsplash.com/@alexstarnes" target="_blank">
+                <em>Alex Starnes</em>
+              </a>
+            </p>
+            <div class="toggle-me">
+              <span id="male" class="male active"
+                ><svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 17 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.938 6.062L15.1667 1.83333M15.1667 1.83333H11.1667M15.1667 1.83333L15.1667 5.83333M12.5 9.83333C12.5 12.7788 10.1122 15.1667 7.16666 15.1667C4.22114 15.1667 1.83333 12.7788 1.83333 9.83333C1.83333 6.88781 4.22114 4.49999 7.16666 4.49999C10.1122 4.49999 12.5 6.88781 12.5 9.83333Z"
+                    stroke="black"
+                    stroke-opacity="0.7"
+                    stroke-width="1.33333"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Male</span
+              >
+              <span id="female" class="female">
+                <svg
+                  width="13"
+                  height="17"
+                  viewBox="0 0 13 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.50001 11.8333V15.8333M6.50001 11.8333C9.44553 11.8333 11.8333 9.44552 11.8333 6.50001C11.8333 3.55449 9.44552 1.16667 6.5 1.16667C3.55448 1.16667 1.16667 3.55449 1.16667 6.50001C1.16667 9.44552 3.55449 11.8333 6.50001 11.8333ZM4.50001 14.5H8.50001"
+                    stroke="black"
+                    stroke-width="1.33333"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Female
+              </span>
+            </div>
+            <!-- <div class="canvas-wrap"> -->
+              <canvas width="350" height="350" class="image-wrapper"> </canvas>
+            <!-- </div> -->
+            <div class="pallete">
+              <button id="transparent" class="circle">
+                <img src="images/pattern.svg" alt="" />
+              </button>
+              <!-- <label class="circle" for="pallete"></label> -->
+              <input id="pallete" type="color" class="circle" />
+              <button
+                class="circle colored"
+                style="background: #fcc219"
+              ></button>
+              <button
+                class="circle colored"
+                style="background: #f85a16"
+              ></button>
+              <button
+                class="circle colored"
+                style="background: #fd0070"
+              ></button>
+              <button
+                class="circle colored picked"
+                style="background: #870aec"
+              ></button>
+              <button
+                class="circle colored"
+                style="background: #497cfe"
+              ></button>
+              <button
+                class="circle colored"
+                style="background: #1bd8a0"
+              ></button>
+              <button
+                class="circle colored"
+                style="background: #0d3a4c"
+              ></button>
+            </div>
+            <div class="tool-options">
+              <div class="shuffle blue-btn">
+                <svg
+                  width="14"
+                  height="15"
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 9.5L13 11.5M13 11.5L11 13.5M13 11.5H11.3793C10.7531 11.5 10.44 11.5 10.1559 11.4137C9.90428 11.3373 9.67024 11.212 9.46712 11.0451C9.23768 10.8565 9.06401 10.596 8.71669 10.075L8.55556 9.83333M11 1.5L13 3.5M13 3.5L11 5.5M13 3.5H11.3793C10.7531 3.5 10.44 3.5 10.1559 3.5863C9.90428 3.6627 9.67024 3.78796 9.46712 3.95491C9.23768 4.14349 9.06401 4.40398 8.71669 4.92496L5.28331 10.075C4.93599 10.596 4.76232 10.8565 4.53288 11.0451C4.32976 11.212 4.09572 11.3373 3.84414 11.4137C3.55996 11.5 3.24689 11.5 2.62075 11.5H1M1 3.5H2.62075C3.24689 3.5 3.55996 3.5 3.84414 3.5863C4.09572 3.6627 4.32976 3.78796 4.53288 3.95491C4.76232 4.14349 4.93599 4.40398 5.28331 4.92496L5.44444 5.16667"
+                    stroke="white"
+                    stroke-width="1.33333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span>Shuffle</span>
+              </div>
+              <div class="copy option">
+                <div class="overflow-hidden">
+                  <div id="copy_selected" class="selected">
+                    <img src="images/Icon-copy.svg" />
+                    <div id="copy_value" class="px"><span>512</span>px</div>
+                  </div>
+                  <span id="copy_arrow" class="angle-down">
+                    <svg
+                      width="10"
+                      height="8"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="black"
+                        stroke-width="1.33333"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                <ul id="copy_image" class="sizes">
+                  <li class="highlight"><span>512</span>px</li>
+                  <li><span>256</span>px</li>
+                  <li><span>128</span>px</li>
+                  <li><span>64</span>px</li>
+                  <li><span>32</span>px</li>
+                  <li><span>24</span>px</li>
+                  <li><span>20</span>px</li>
+                  <li><span>16</span>px</li>
+                </ul>
+                <span class="tooltip">Copy to clipboard</span>
+              </div>
+              <div class="download option">
+                <div class="overflow-hidden">
+                  <div id="download_selected" class="selected">
+                    <img src="images/Icon-download.svg" />
+                    <div id="download_value" class="px"><span>512</span>px</div>
+                  </div>
+                  <span id="download_arrow" class="angle-down">
+                    <svg
+                      width="10"
+                      height="8"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="black"
+                        stroke-width="1.33333"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                <ul id="download_image" class="sizes">
+                  <li class="highlight"><span>512</span>px</li>
+                  <li><span>256</span>px</li>
+                  <li><span>128</span>px</li>
+                  <li><span>64</span>px</li>
+                  <li><span>32</span>px</li>
+                  <li><span>24</span>px</li>
+                  <li><span>20</span>px</li>
+                  <li><span>16</span>px</li>
+                </ul>
+                <span class="tooltip">Download</span>
+              </div>
+
+              <div class="save option">
+                <div class="overflow-hidden">
+                  <img src="images/Icon-save.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right hidden">
+          <div class="advertising right-part">Reserved for ADs</div>
+          <div class="advertising right-part">Reserved for ADs</div>
+        </div>
+      </div>
+      <footer>
+        <div class="down-text">
+          <p class="copy-rights">©2023 UImage. All rights reserved.</p>
+          <p class="contributers">
+            Designed by <i>Eslam</i>, Developed by <i>Sayed</i>
+          </p>
+        </div>
+      </footer>
+    </div>
+    <div class="toastMessage">Image copied to clipboard 😎</div>
+    <script src="script.js"></script>
+  </body>
+</html>
