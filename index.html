@@ -3,8 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css" />
+    <!-- <script defer src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script> -->
+
+  
     <title>UImage</title>
+
   </head>
   <body>
     <div class="container">
@@ -78,7 +93,7 @@
                 <img src="images/pattern.svg" alt="" />
               </button>
               <!-- <label class="circle" for="pallete"></label> -->
-              <input id="pallete" type="color" class="circle" />
+              <input id="pallete" value=" " class="instance1 circle" type="text" data-coloris />
               <button
                 class="circle colored"
                 style="background: #fcc219"
@@ -223,6 +238,65 @@
       </footer>
       <div class="toastMessage">Image copied to clipboard 😎</div>
     </div>
-    <script src="script.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+    <script>
+       Coloris.setInstance(".instance1", {
+        // theme: "polaroid",
+        themeMode: "default",
+        alpha: false,
+        //   formatToggle: true,
+        swatches: [
+          "#7ABFFF",
+          "#9896FF",
+          "#DD96FF",
+          "#FF9696",
+          "#FFCF96",
+          "#96FFA0",
+          "#142846",
+        ],
+      });
+      const c = document.querySelector(".instance1");
+
+      c.addEventListener("click", () => {
+        //  window.onload = function(){
+  //        const btns = document.querySelector('.clr-swatches > div button')
+  //  console.log(btns);
+         const x = document.querySelector(".clr-picker");
+
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("new");
+        newDiv.innerHTML = `
+          <div class="showColor"></div>
+          <div class="picker">
+            <span>
+              Picker
+            <i class="fa-solid fa-angle-down"></i>
+              </span>
+              <img src="images/Icon-copy.svg">
+            </div>
+            <div class="colors">
+      <div>Your colors:</div>
+      <div class="signIn">
+        <a href="#">Sign in</a>
+        to save colors
+      </div>
+    </div>
+      
+          `;
+        x.appendChild(newDiv);
+        // if(x.style.display = 'block'){
+        //   console.log('od');
+        //   const btn1 = document.querySelector('#clr-picker .clr-swatches')
+        //   let y = btn1.querySelectorAll('button')
+        // console.log(y);
+        // console.log(e.swatches);
+        // }
+   
+      });
+ 
+    </script>
+        <script src="script.js"></script>
+
   </body>
 </html>

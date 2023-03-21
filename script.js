@@ -15,7 +15,7 @@ const copyValue = document.querySelector("#copy_value span");
 const downloadValue = document.querySelector("#download_value span");
 const toggleBtns = document.querySelectorAll(".toggle-me span");
 const canvas = document.querySelector(".image-wrapper");
-const colorInput = document.querySelector('input[type="color"]');
+const colorInput = document.getElementById('pallete');
 const coloredCircles = document.querySelectorAll(".colored");
 const circles = document.querySelectorAll(".circle");
 const transparent = document.getElementById("transparent");
@@ -23,101 +23,26 @@ const toastMessage = document.querySelector(".toastMessage");
 const shuffle = document.querySelector(".shuffle");
 const ctx = canvas.getContext("2d");
 
+let image;
+let image2;
 let gender = "male-1";
 let background = "#870aec";
-let image;
-let imag;
 let newCanvas = document.createElement("canvas");
 let ctx2 = newCanvas.getContext("2d");
 
-
 function toggleGender() {
   if (maleBtn.classList.contains("active")) {
-    maleBtn.classList.remove('active')
-    femaleBtn.classList.add('active')
-    gender = 'female'
-    generateImage()
+    maleBtn.classList.remove("active");
+    femaleBtn.classList.add("active");
+    gender = "female";
+    // generateImage()
   } else {
-    maleBtn.classList.add('active')
-    femaleBtn.classList.remove('active')
-    gender = 'male-1'
-    generateImage()
+    maleBtn.classList.add("active");
+    femaleBtn.classList.remove("active");
+    gender = "male-1";
+    // generateImage()
   }
 }
-
-generateImage();
-function generateImage() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = background;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  image = new Image();
-  image.src = `images/${gender}.png`;
-  console.log(image.src);
-  image.addEventListener("load", () => {
-    ctx.drawImage(image, 0, 30, canvas.width, 340);
-  });
-}
-
-function generateImage2Copy(dimension) {
-  newCanvas.height = dimension;
-  newCanvas.width = dimension;
-  ctx2.clearRect(0, 0, canvas.width, canvas.height);
-  ctx2.fillStyle = background;
-  ctx2.fillRect(0, 0, dimension, dimension);
-
-  let imag = new Image();
-  imag.src = `images/${gender}.png`;
-  imag.width = newCanvas.width;
-  imag.height = newCanvas.height;
-  imag.addEventListener("load", () => {
-    ctx2.drawImage(imag, 0, 0, dimension, dimension);
-  });
-  setTimeout(() => {
-    copyToClipboard();
-  }, 1000);
-}
-function generateImage2Download(dimension) {
-  newCanvas.height = dimension;
-  newCanvas.width = dimension;
-  ctx2.clearRect(0, 0, canvas.width, canvas.height);
-  ctx2.fillStyle = background;
-  ctx2.fillRect(0, 0, dimension, dimension);
-
-  let imag = new Image();
-  imag.src = `images/${gender}.png`;
-  imag.width = newCanvas.width;
-  imag.height = newCanvas.height;
-  // console.log(newCanvas.width, newCanvas.height, imag.width, imag.height);
-  imag.addEventListener("load", () => {
-    ctx2.drawImage(imag, 0, 0, dimension, dimension);
-  });
-  setTimeout(() => {
-    dowloadImage();
-  }, 1000);
-}
-// generateImage2();
-maleBtn.addEventListener("click", () => {
-   gender = "male-1";
-  generateImage();
-  toggleGender();
-});
-femaleBtn.addEventListener("click", () => {
-   gender = "female-1";
- generateImage();
- toggleGender();
-  // generateImage2();
-});
-
-shuffle.addEventListener("click", () => {
-  if (maleBtn.classList.contains("active")) {
-    gender = "male" + Math.floor(Math.random() * 6);
-    generateImage()
-  } else {
-    gender = "female" + Math.floor(Math.random() * 3);
-    generateImage()
-  }
-});
 
 circles.forEach((one, idx) => {
   one.addEventListener("click", () => {
@@ -130,26 +55,118 @@ circles.forEach((one, idx) => {
   });
 });
 
+generateImage();
+function generateImage() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = background;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  image = new Image();
+  image.src = `images/${gender}.png`;
+
+  image.addEventListener("load", () => {
+    ctx.drawImage(image, 0, 30, canvas.width, 340);
+  });
+}
+
+function generateImage2Copy(dimension) {
+  newCanvas.height = dimension;
+  newCanvas.width = dimension;
+  ctx2.clearRect(0, 0, canvas.width, canvas.height);
+  ctx2.fillStyle = background;
+  ctx2.fillRect(0, 0, dimension, dimension);
+
+  let image2 = new Image();
+  image2.src = `images/${gender}.png`;
+  image2.width = newCanvas.width;
+  image2.height = newCanvas.height;
+  image2.addEventListener("load", () => {
+    ctx2.drawImage(image2, 0, 0, dimension, dimension);
+  });
+  setTimeout(() => {
+    copyToClipboard();
+  }, 1000);
+}
+function generateImage2Download(dimension) {
+  newCanvas.height = dimension;
+  newCanvas.width = dimension;
+  ctx2.clearRect(0, 0, canvas.width, canvas.height);
+  ctx2.fillStyle = background;
+  ctx2.fillRect(0, 0, dimension, dimension);
+
+  let image2 = new Image();
+  image2.src = `images/${gender}.png`;
+  image2.width = newCanvas.width;
+  image2.height = newCanvas.height;
+  // console.log(newCanvas.width, newCanvas.height, image2.width, image2.height);
+  image2.addEventListener("load", () => {
+    ctx2.drawImage(image2, 0, 0, dimension, dimension);
+  });
+  setTimeout(() => {
+    dowloadImage();
+  }, 1000);
+}
+
+function copyToClipboard() {
+  newCanvas.toBlob(function (blob) {
+    navigator.clipboard
+      .write([
+        new ClipboardItem({
+          [blob.type]: blob,
+        }),
+      ])
+
+      .then(() => console.log("Image copied to clipboard"))
+      .catch((err) => console.error("Could not copy image to clipboard", err));
+  });
+}
+
+function dowloadImage() {
+  const imageLink = document.createElement("a");
+  document.body.appendChild(imageLink);
+  imageLink.href = newCanvas.toDataURL("image.png", 1);
+  imageLink.download = "image.png";
+  imageLink.click();
+}
+
+maleBtn.addEventListener("click", () => {
+  gender = "male-1";
+  generateImage();
+  toggleGender();
+});
+femaleBtn.addEventListener("click", () => {
+  gender = "female-1";
+  generateImage();
+  toggleGender();
+});
+
+shuffle.addEventListener("click", () => {
+  if (maleBtn.classList.contains("active")) {
+    gender = "male" + Math.floor(Math.random() * 6);
+    generateImage();
+  } else {
+    gender = "female" + Math.floor(Math.random() * 3);
+    generateImage();
+  }
+});
+
 coloredCircles.forEach((circle, idx) => {
   circle.addEventListener("click", () => {
     background = coloredCircles[idx].style.backgroundColor;
     generateImage();
-    // generateImage2();
   });
 });
 
 colorInput.addEventListener("input", () => {
   background = colorInput.value;
   generateImage();
-  // generateImage2();
 });
+colorInput.style.color = 'transparent'
 
 transparent.addEventListener("click", () => {
   background = "transparent";
   generateImage();
-  // generateImage2()
 });
-
 
 copyArrow.addEventListener("click", () => {
   downloadArrow.classList.remove("active");
@@ -168,7 +185,8 @@ downloadArrow.addEventListener("click", () => {
 });
 
 document.body.addEventListener("click", (e) => {
-  if (!copyImageList.contains(e.target) && !copyArrow.contains(e.target)) {
+  if (!copyImageList.contains(e.target) && 
+      !copyArrow.contains(e.target)) {
     copyImageList.classList.remove("displayed");
     copyArrow.classList.remove("active");
     copyArrow.parentElement.classList.remove("nohover");
@@ -182,7 +200,6 @@ document.body.addEventListener("click", (e) => {
     downloadArrow.parentElement.classList.remove("nohover");
   }
 });
-
 
 copyImageSizes.forEach((size) => {
   size.addEventListener("click", () => {
@@ -217,38 +234,14 @@ copySelected.addEventListener("click", () => {
   setTimeout(() => {
     toastMessage.classList.remove("show");
     copySelected.classList.remove("active");
-    // copySelected.classList.toggle("nohover");
-  }, 2000);
+  }, 1000);
 });
 downloadSelected.addEventListener("click", () => {
   downloadSelected.classList.add("active");
   generateImage2Download(downloadValue.textContent);
 
   setTimeout(() => {
-    toastMessage.classList.remove("show");
     downloadSelected.classList.remove("active");
-    // copySelected.classList.toggle("nohover");
-  }, 2000);
+  }, 1000);
 });
 
-function copyToClipboard() {
-  newCanvas.toBlob(function (blob) {
-    navigator.clipboard
-      .write([
-        new ClipboardItem({
-          [blob.type]: blob,
-        }),
-      ])
-
-      .then(() => console.log("Image copied to clipboard"))
-      .catch((err) => console.error("Could not copy image to clipboard", err));
-  });
-}
-
-function dowloadImage() {
-  const imageLink = document.createElement("a");
-  document.body.appendChild(imageLink);
-  imageLink.href = newCanvas.toDataURL("image.png", 1);
-  imageLink.download = "image.png";
-  imageLink.click();
-}
