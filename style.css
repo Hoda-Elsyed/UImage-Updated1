@@ -523,7 +523,6 @@ footer {
   box-shadow: 0px 14px 38px rgba(0, 0, 0, 0.25),
     0px 2px 1px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  overflow: hidden;
 }
 .clr-picker::before {
   content: "";
@@ -655,6 +654,8 @@ input.clr-color:focus {
 .clr-swatches div {
   justify-content: space-between;
   padding-bottom: 0;
+  overflow: hidden;
+
 }
 .clr-swatches button {
   width: 24px;
