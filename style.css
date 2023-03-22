@@ -523,6 +523,7 @@ footer {
   box-shadow: 0px 14px 38px rgba(0, 0, 0, 0.25),
     0px 2px 1px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
+  overflow: hidden;
 }
 .clr-picker::before {
   content: "";
@@ -637,6 +638,9 @@ input.clr-color:focus {
   background-color: #dcdde0;
   /* margin:-10px 0 0 5px; */
 }
+.picker img, .picker span{
+  cursor: pointer;
+}
 .colors {
   display: flex;
   align-items: center;
@@ -655,10 +659,11 @@ input.clr-color:focus {
 .clr-swatches button {
   width: 24px;
   height: 24px;
-  /* overflow: visible; */
+  overflow: visible;
   z-index: 99;
+  color: transparent;
 }
-/* .clr-swatches button:hover::before {
+.clr-swatches button:hover::before {
   background-color:#fff;
   position: absolute;
   content: '';
@@ -671,9 +676,9 @@ input.clr-color:focus {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  z-index: 90;
+  z-index: 999;
   box-shadow: 0px 0.4px 0px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.25);
-} */
+}
 .signIn{
   font-size: 12px;
   line-height: 15px;
